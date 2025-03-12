@@ -106,6 +106,21 @@
   display: block;
 }
 
+.edit-btn::after {
+  font-weight: 900;
+  position: absolute;
+  right: 35px;
+  top: 2px;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  content: "\270E";
+}
+
+.edit-btn:hover {
+  color: red;
+}
+
 .rm-btn::after {
   font-weight: 900;
   position: absolute;
