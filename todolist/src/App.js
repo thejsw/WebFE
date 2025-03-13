@@ -89,16 +89,23 @@ function App() {
 			</form>
 			<div id="todoBox" className="todo-box">
 				{toDos.map((item, index) => (
-					<label className={`new-todo ${item.checked ? "check" : ""}`} key={index}>
-						{item.text}
-						<input
-							type="checkbox"
-							checked={item.checked}
-							onChange={() => onToggleCheck(index)}
-						/>
+					<div className="new-todo">
+						<button
+							className="check-mark"
+							onClick={() => onToggleCheck(index)}></button>
+						<label
+							className={`new-todo-label ${item.checked ? "check" : ""}`}
+							key={index}>
+							{item.text}
+							<input
+								type="checkbox"
+								checked={item.checked}
+								onChange={() => onToggleCheck(index)}
+							/>
+						</label>
 						<span className="edit-btn" onClick={() => onEdit(index)}></span>
 						<span className="rm-btn" onClick={() => onRemove(index)}></span>
-					</label>
+					</div>
 				))}
 			</div>
 		</>
