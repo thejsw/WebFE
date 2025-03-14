@@ -91,7 +91,7 @@ function App() {
 				{toDos.map((item, index) => (
 					<div className="new-todo">
 						<button
-							className="check-mark"
+							className={`check-mark ${item.checked ? "check" : ""}`}
 							onClick={() => onToggleCheck(index)}></button>
 						<label
 							className={`new-todo-label ${item.checked ? "check" : ""}`}

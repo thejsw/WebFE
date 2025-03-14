@@ -79,35 +79,16 @@
 	cursor: pointer;
 }
 
+.check-mark.check {
+	background-color: #000;
+}
+
 .check {
 	text-decoration: line-through;
 }
 
 .new-todo-label {
 	cursor: pointer;
-}
-
-.check-mark::after {
-	display: none;
-	position: absolute;
-	left: 7px;
-	top: 3px;
-	width: 5px;
-	height: 10px;
-	border: solid white;
-	border-width: 0 3px 3px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-	content: "";
-}
-
-.new-todo input:checked ~ .check-mark {
-	background-color: #000;
-}
-
-.new-todo input:checked ~ .check-mark::after {
-	display: block;
 }
 
 .edit-btn::after {
