@@ -85,7 +85,9 @@ function App() {
 					onClick={onSubmit}
 					onKeyDown={event => {
 						if (event.key === "Enter") onSubmit(event);
-					}}></span>
+					}}>
+					+
+				</span>
 			</form>
 			<div id="todoBox" className="todo-box">
 				{toDos.map((item, index) => (
