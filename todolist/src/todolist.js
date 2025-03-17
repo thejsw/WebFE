@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./todolist.css";
 
 const TodoList = () => {
 	// input value값으로 state 설정
@@ -25,11 +26,14 @@ const TodoList = () => {
 		});
 	};
 
-	// toDos 배열 추가하는 함수
 	const onSubmit = event => {
-		// 재렌더링 시 새로고침 방지
 		event.preventDefault();
-		// 입력값 유효성 검사 / trim()으로 앞뒤 공백 제거 후 비어있지 않은지 확인
+
+		const inputValue = editIndex !== null ? editText : toDo;
+		if (inputValue === "") {
+			alert("no value");
+			return;
+		}
 		if (editIndex !== null) {
 			// 수정 모드
 			setToDos(currentArray => {
@@ -44,8 +48,9 @@ const TodoList = () => {
 			setEditText(""); // 입력 필드 초기화
 		} else {
 			// 추가 모드
-			setToDos([...toDos, {text: toDo, checked: false}]);
+			setToDos([...toDos, {id: Date.now(), text: toDo, checked: false}]);
 			setToDo("");
+			console.log(toDos);
 		}
 	};
 
