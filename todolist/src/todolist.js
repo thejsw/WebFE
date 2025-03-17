@@ -28,12 +28,6 @@ const TodoList = () => {
 
 	const onSubmit = event => {
 		event.preventDefault();
-
-		const inputValue = editIndex !== null ? editText : toDo;
-		if (inputValue === "") {
-			alert("no value");
-			return;
-		}
 		if (editIndex !== null) {
 			// 수정 모드
 			setToDos(currentArray => {
@@ -82,16 +76,16 @@ const TodoList = () => {
 						editIndex !== null ? setEditText(e.target.value) : setToDo(e.target.value)
 					}
 				/>
-				<span
+				<button
 					id="addBtn"
 					className="add-btn"
-					role="button"
+					disabled={(editIndex !== null ? editText.trim() : toDo.trim()) === ""}
 					onClick={onSubmit}
 					onKeyDown={event => {
 						if (event.key === "Enter") onSubmit(event);
 					}}>
 					+
-				</span>
+				</button>
 			</form>
 			<div id="todoBox" className="todo-box">
 				{toDos.map((item, index) => (

@@ -24,18 +24,24 @@
 	position: relative;
 	width: 50px;
 	height: 50px;
+	border: none;
 	border-radius: 100%;
 	/* border: 2px solid #000; */
 	background-color: orange;
 	color: #fff;
 	font-size: 40px;
-	font-weight: 900;
+	font-weight: 600;
 	line-height: 40px;
 	text-align: center;
 	cursor: pointer;
 }
 .add-btn:hover {
 	background-color: rgba(255, 166, 0, 0.5);
+}
+.add-btn:disabled {
+	background-color: gray; /* 비활성화 상태에서 배경색 변경 */
+	cursor: not-allowed; /* 커서 스타일 변경 */
+	opacity: 0.6; /* 투명도 조정 */
 }
 
 .todo-box {
