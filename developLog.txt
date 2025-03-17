@@ -13,6 +13,8 @@
 - Update 기능과 check 기능 분리
 - Checkbox 구현
 
+3/13
+- Checkbox 체크 표시 구현
+
 앞으로 해야할 것
-> Checkbox 체크 표시 구현
 > 날씨 정보 받아오기
