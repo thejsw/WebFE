@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import "./weather.css";
 import API_KEY from "./security.js";
 
 const WeatherComponent = () => {
@@ -33,7 +34,7 @@ const WeatherComponent = () => {
 			<p className="weather-temp">현재기온: {CelsiusTemp} °C</p>
 			<p className="weather-description">현재날씨: {weatherResult.weather[0].main}</p>
 			<img
-				className="weather-icon"
+				// className="weather-icon"
 				src={`http://openweathermap.org/img/wn/${weatherResult.weather[0].icon}.png`}
 				alt={weatherResult.weather[0].main}
 			/>
