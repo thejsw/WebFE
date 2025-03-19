@@ -1,0 +1,25 @@
+.weather-container {
+	text-align: center;
+	margin: 20px;
+	font-family: Arial, sans-serif;
+}
+
+.weather-title {
+	font-size: 2rem;
+	color: #333;
+}
+
+.weather-temp {
+	font-size: 1.5rem;
+	color: #007bff;
+}
+
+.weather-description {
+	font-size: 1.2rem;
+	color: #555;
+}
+
+/* .weather-icon {
+    width: 100px;
+    height: auto;
+} */

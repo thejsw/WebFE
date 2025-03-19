@@ -11,6 +11,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #fafafa;
-	font-family: "Funnel Display", sans-serif;
+	background-color: #f7f7f5;
+	color: #1a1918;
+	font-family: "funnel display", sans-serif;
 }
