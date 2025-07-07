@@ -1,0 +1,73 @@
+@import url(`https://fonts.googleapis.com/css?family=Montserrat&display=swap`);
+
+body {
+  background: #dde1e7;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 50 auto;
+  padding: 32px 16px;
+  width: 320px;
+  height: 550px;
+  background: #dde1e7;
+  border-radius: 0.5em;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+}
+
+.container .result {
+  height: 150px;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
+}
+
+.container .result p {
+  margin-left: 15px;
+  margin-right: 15px;
+  overflow-y: auto;
+  font-size: 40pt;
+  text-align: right;
+}
+
+.container .buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+}
+
+.container .buttons .button {
+  cursor: grab;
+  text-align: center;
+  width: 60px;
+  height: 50px;
+  font-size: 18px;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
+}
+
+.button:hover {
+  background-color: #babeccad;
+}
+
+.container .buttons .zero {
+}
+
+.action-btn {
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  *,
+  body,
+  .container {
+    background-color: rgba(74, 73, 73);
+    color: white;
+  }
+  .calc-action-btn {
+    color: #ffd900ab;
+  }
+}
