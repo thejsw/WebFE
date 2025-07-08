@@ -1,4 +1,4 @@
-@import url(`https://fonts.googleapis.com/css?family=Montserrat&display=swap`);
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 body {
   background: #dde1e7;
@@ -51,9 +51,6 @@ body {
 
 .button:hover {
   background-color: #babeccad;
-}
-
-.container .buttons .zero {
 }
 
 .action-btn {
