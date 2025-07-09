@@ -30,9 +30,7 @@ actionBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       try {
         // 연산자 기호 변환
-        const expression = currentInput.replace(/×/g, "*").replace(/÷/g, "/");
-
-        const result = eval(expression);
+        const result = evaluateExpression(currentInput);
         resultBox.innerHTML = result;
         currentInput = "";
       } catch (err) {
@@ -42,3 +40,78 @@ actionBtns.forEach((btn) => {
     });
   }
 });
+
+// Shunting Yard 알고리즘을 이용한 계산 로직
+const evaluateExpression = (expression) => {
+  const tokens = expression
+    .replace(/×/g, "*")
+    .replace(/÷/g, "/")
+    .split(" ")
+    .filter((token) => token.trim() !== "");
+
+  const outputQueue = [];
+  const operatorStack = [];
+
+  const precedence = {
+    "+": 1,
+    "-": 1,
+    "×": 2,
+    "÷": 2,
+  };
+
+  const applyOperator = (a, b, operator) => {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    switch (operator) {
+      case "+":
+        return a + b;
+      case "-":
+        return a - b;
+      case "*":
+        return a * b;
+      case "/":
+        return a / b;
+    }
+  };
+
+  // Shunting Yard 알고리즘으로 중위표기 -> 후위표기 변환
+  // 예시 입력: ["3", "+", "4", "*", "2"]
+  // 출력 큐 (후위표기): ["3", "4", "2", "*", "+"]
+  tokens.forEach((token) => {
+    if (!isNaN(token)) {
+      // 숫자라면 그대로 출력 큐에 추가
+      outputQueue.push(token);
+    } else if (["+", "-", "*", "/"].includes(token)) {
+      // 연산자일 경우
+      while (
+        operatorStack.length && // 스택에 연산자가 남아 있고
+        precedence[operatorStack[operatorStack - 1]] >= precedence[token] // 스택 위 연산자의 우선순위가 현재 연산자보다 높으면
+      ) {
+        outputQueue.push(operatorStack.pop()); // 스택에서 연산자를 꺼내 출력 큐에 넣음 (우선순위 높은 연산자부터 처리)
+      }
+      operatorStack.push(token); // 현재 연산자를 스택에 추가
+    }
+  });
+
+  // 남아 있는 연산자를 출력 큐로 이동
+  while (operatorStack.length) {
+    outputQueue.push(operator.pop());
+  }
+
+  // 후위표기법 계산
+  const stack = [];
+  outputQueue.forEach((token) => {
+    if (!isNaN(token)) {
+      // 숫자라면 스택에 push
+      stack.push(token);
+    } else {
+      // 연산자라면 스택에서 숫자 2개를 꺼내 연산 수행
+      const b = stack.pop(); // 오른쪽 피연산자
+      const a = stack.pop(); // 왼쪽 피연산자
+      stack.push(applyOperator(a, b, token)); // 계산 결과를 다시 스택에 push
+    }
+  });
+
+  // 스택에 남아 있는 하나의 값이 최종 계산 결과가 됨
+  return stack[0];
+};
