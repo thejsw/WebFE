@@ -68,8 +68,8 @@ const evaluateExpression = (expression) => {
   const precedence = {
     "+": 1,
     "-": 1,
-    "×": 2,
-    "÷": 2,
+    "*": 2,
+    "/": 2,
   };
 
   const applyOperator = (a, b, operator) => {
