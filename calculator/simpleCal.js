@@ -3,9 +3,11 @@ const resultBox = document.getElementById("result-box");
 const numBtns = document.querySelectorAll(".num-btn");
 const operatorBtns = document.querySelectorAll(".operator-btn");
 const actionBtns = document.querySelectorAll(".action-btn");
+const dotBtn = document.querySelectorAll(".dot-btn");
 
 // 현재 입력 중인 수식 저장할 변수
 let currentInput = "";
+let isDotEntered = false;
 
 // 숫자, 연산자 버튼 클릭 이벤트 등록
 numBtns.forEach((btn) => {
@@ -13,17 +15,21 @@ numBtns.forEach((btn) => {
     const value = btn.textContent;
     currentInput += value;
     resultBox.innerHTML = currentInput;
+    console.log(isDotEntered);
   });
 });
 
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const value = btn.textContent;
-    const isOperator = (char) => ["+", "-", "÷", "×", "."].includes(char);
+    // 연산자 중복 입력 방지
+    const isOperator = (char) => ["+", "-", "÷", "×"].includes(char);
     if (currentInput !== "" && !isOperator(currentInput.slice(-1))) {
       currentInput += value;
       resultBox.innerHTML = currentInput;
     }
+    isDotEntered = false;
+    console.log(isDotEntered);
   });
 });
 
@@ -39,8 +45,30 @@ actionBtns.forEach((btn) => {
         resultBox.innerHTML = "Error";
         currentInput = "";
       }
+      isDotEntered = false;
+      console.log(isDotEntered);
     });
   }
+});
+
+// 소수점 중복 입력 방지
+dotBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const value = btn.textContent;
+
+    if (isDotEntered === false) {
+      // 입력이 처음이거나 마지막이 연산자면 "0."부터 시작
+      if (currentInput === "" || /[+\-*/]$/.test(currentInput)) {
+        currentInput += "0.";
+      } else {
+        currentInput += value;
+      }
+
+      resultBox.innerHTML = currentInput;
+      isDotEntered = true; // 중복 방지
+      console.log(isDotEntered);
+    }
+  });
 });
 
 actionBtns.forEach((btn) => {
