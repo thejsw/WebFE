@@ -40,6 +40,17 @@ actionBtns.forEach((btn) => {
   }
 });
 
+actionBtns.forEach((btn) => {
+  if (btn.textContent === "⌫") {
+    btn.addEventListener("click", () => {
+      if (currentInput.length > 0) {
+        currentInput = currentInput.slice(0, -1);
+        resultBox.innerHTML = currentInput;
+      }
+    });
+  }
+});
+
 // Shunting Yard 알고리즘을 이용한 계산 로직
 const evaluateExpression = (expression) => {
   // 공백 없이도 분리 가능하게 수정
