@@ -18,9 +18,11 @@ numBtns.forEach((btn) => {
 
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    const value = btn.textContent;
-    currentInput += value;
-    resultBox.innerHTML = currentInput;
+    if (currentInput !== "") {
+      const value = btn.textContent;
+      currentInput += value;
+      resultBox.innerHTML = currentInput;
+    }
   });
 });
 
