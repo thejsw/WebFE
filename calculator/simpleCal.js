@@ -29,7 +29,6 @@ actionBtns.forEach((btn) => {
   if (btn.textContent === "=") {
     btn.addEventListener("click", () => {
       try {
-        // 연산자 기호 변환
         const result = evaluateExpression(currentInput);
         resultBox.innerHTML = result;
         currentInput = "";
@@ -43,12 +42,26 @@ actionBtns.forEach((btn) => {
 
 // Shunting Yard 알고리즘을 이용한 계산 로직
 const evaluateExpression = (expression) => {
-  const tokens = expression
-    .replace(/×/g, "*")
-    .replace(/÷/g, "/")
-    .split(" ")
-    .filter((token) => token.trim() !== "");
+  // 공백 없이도 분리 가능하게 수정
+  function tokenize(expression) {
+    const tokens = [];
+    let num = "";
+    for (let ch of expression.replace(/×/g, "*").replace(/÷/g, "/")) {
+      if ("0123456789.".includes(ch)) {
+        num += ch;
+      } else if ("+-*/".includes(ch)) {
+        if (num !== "") {
+          tokens.push(num);
+          num = "";
+        }
+        tokens.push(ch);
+      }
+    }
+    if (num !== "") tokens.push(num);
+    return tokens;
+  }
 
+  const tokens = tokenize(expression);
   const outputQueue = [];
   const operatorStack = [];
 
@@ -85,7 +98,7 @@ const evaluateExpression = (expression) => {
       // 연산자일 경우
       while (
         operatorStack.length && // 스택에 연산자가 남아 있고
-        precedence[operatorStack[operatorStack - 1]] >= precedence[token] // 스택 위 연산자의 우선순위가 현재 연산자보다 높으면
+        precedence[operatorStack[operatorStack.length - 1]] >= precedence[token] // 스택 위 연산자의 우선순위가 현재 연산자보다 높으면
       ) {
         outputQueue.push(operatorStack.pop()); // 스택에서 연산자를 꺼내 출력 큐에 넣음 (우선순위 높은 연산자부터 처리)
       }
@@ -95,7 +108,7 @@ const evaluateExpression = (expression) => {
 
   // 남아 있는 연산자를 출력 큐로 이동
   while (operatorStack.length) {
-    outputQueue.push(operator.pop());
+    outputQueue.push(operatorStack.pop());
   }
 
   // 후위표기법 계산
