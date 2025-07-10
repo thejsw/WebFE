@@ -18,8 +18,9 @@ numBtns.forEach((btn) => {
 
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (currentInput !== "") {
-      const value = btn.textContent;
+    const value = btn.textContent;
+    const isOperator = (char) => ["+", "-", "÷", "×", "."].includes(char);
+    if (currentInput !== "" && !isOperator(currentInput.slice(-1))) {
       currentInput += value;
       resultBox.innerHTML = currentInput;
     }
