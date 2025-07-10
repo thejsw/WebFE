@@ -15,7 +15,6 @@ numBtns.forEach((btn) => {
     const value = btn.textContent;
     currentInput += value;
     resultBox.innerHTML = currentInput;
-    console.log(isDotEntered);
   });
 });
 
@@ -29,7 +28,6 @@ operatorBtns.forEach((btn) => {
       resultBox.innerHTML = currentInput;
     }
     isDotEntered = false;
-    console.log(isDotEntered);
   });
 });
 
@@ -46,7 +44,6 @@ actionBtns.forEach((btn) => {
         currentInput = "";
       }
       isDotEntered = false;
-      console.log(isDotEntered);
     });
   }
 });
@@ -66,7 +63,6 @@ dotBtn.forEach((btn) => {
 
       resultBox.innerHTML = currentInput;
       isDotEntered = true; // 중복 방지
-      console.log(isDotEntered);
     }
   });
 });
@@ -78,6 +74,12 @@ actionBtns.forEach((btn) => {
         currentInput = currentInput.slice(0, -1);
         resultBox.innerHTML = currentInput;
       }
+    });
+  }
+  if (btn.textContent === "AC" || btn.textContent === "CE") {
+    btn.addEventListener("click", () => {
+      currentInput = "";
+      resultBox.innerHTML = currentInput;
     });
   }
 });
