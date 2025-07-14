@@ -135,6 +135,7 @@ const addToHistory = (expression, result) => {
   }
 
   renderHistory();
+  saveHistoryToStorage();
 };
 
 // 계산 기록 출력 함수
@@ -160,6 +161,20 @@ const renderHistory = () => {
 toggleBtn.addEventListener("click", () => {
   historyPanel.classList.toggle("hidden");
 });
+
+// 계산 기록 localStorage 연동 및 불러오기
+function saveHistoryToStorage() {
+  localStorage.setItem("calc-history", JSON.stringify(historyList));
+}
+
+function loadHistoryFromStorage() {
+  const saved = localStorage.getItem("calc-history");
+  if (saved) {
+    historyList = JSON.parse(saved);
+    renderHistory();
+  }
+}
+loadHistoryFromStorage();
 
 // Shunting Yard 알고리즘을 이용한 계산 로직
 const evaluateExpression = (expression) => {
