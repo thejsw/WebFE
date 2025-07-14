@@ -27,12 +27,14 @@ numBtns.forEach((btn) => {
 operatorBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const value = btn.textContent;
+    const lastChar = currentInput.slice(-1);
     // 연산자 중복 입력 방지
     const isOperator = (char) => ["+", "-", "÷", "×"].includes(char);
-    if (currentInput !== "" && !isOperator(currentInput.slice(-1))) {
-      currentInput += value;
-      resultBox.innerHTML = currentInput;
+    if (currentInput === "" || isOperator(lastChar) || lastChar === ".") {
+      return;
     }
+    currentInput += value;
+    resultBox.innerHTML = currentInput;
     isDotEntered = false;
   });
 });
@@ -112,7 +114,11 @@ actionBtns.forEach((btn) => {
   if (btn.textContent === "⌫") {
     btn.addEventListener("click", () => {
       if (currentInput.length > 0) {
+        const removedChar = currentInput.slice(-1);
         currentInput = currentInput.slice(0, -1);
+        if (removedChar === ".") {
+          isDotEntered = false;
+        }
         resultBox.innerHTML = currentInput;
       }
     });
