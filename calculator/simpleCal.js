@@ -4,10 +4,9 @@ const numBtns = document.querySelectorAll(".num-btn");
 const operatorBtns = document.querySelectorAll(".operator-btn");
 const actionBtns = document.querySelectorAll(".action-btn");
 const dotBtn = document.querySelectorAll(".dot-btn");
-const plusMinusBtn = document.querySelectorAll(".plus-minus-btn");
 const historyEl = document.getElementById("history");
-const emptyMessage = document.getElementById("empty-message");
 const historyPanel = document.getElementById("history-panel");
+const emptyMessage = document.getElementById("empty-message");
 const toggleBtn = document.getElementById("toggle-history-btn");
 
 // 현재 입력 중인 수식 저장할 변수
@@ -74,37 +73,6 @@ dotBtn.forEach((btn) => {
 
       resultBox.innerHTML = currentInput;
       isDotEntered = true; // 중복 방지
-    }
-  });
-});
-
-// 플러스 마이너스 부호 변환 기능
-plusMinusBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (currentInput === "") return;
-
-    // 정규식으로 마지막 숫자 찾기 (부호 포함)
-    const match = currentInput.match(/([+\-*/])?(-?\d*\.?\d*)$/);
-
-    if (match) {
-      const operator = match[1] || "";
-      let number = match[2];
-
-      // 부호 토글
-      if (number.startsWith("-")) {
-        number = number.slice(1);
-      } else {
-        number = "-" + number;
-      }
-
-      // 기존 입력에서 해당 부분 교체
-      const updated =
-        currentInput.slice(0, currentInput.length - match[0].length) +
-        operator +
-        number;
-
-      currentInput = updated;
-      resultBox.innerHTML = currentInput;
     }
   });
 });
