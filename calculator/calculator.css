@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
   margin: 50 auto;
   padding: 32px 16px;
   width: 320px;
@@ -68,56 +69,85 @@ body {
     background-color: rgba(74, 73, 73);
     color: white;
   }
-  .calc-action-btn {
-    color: #ffd900ab;
+  .container #history-panel {
+    background-color: rgba(74, 73, 73);
+    color: white;
+    border-top: 1px solid #666;
+  }
+
+  .container #history li {
+    color: white;
+  }
+
+  .container #history li:hover {
+    background-color: #222;
+  }
+
+  .container #toggle-history-btn {
+    background-color: #444;
+    color: white;
+  }
+
+  .container #toggle-history-btn:hover {
+    background-color: #222;
   }
 }
 #history-panel {
-  position: fixed;
-  right: 20px;
-  bottom: 80px;
-  width: 250px;
-  max-height: 300px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
+  position: absolute;
+  bottom: 0; /* 버튼 영역을 덮기 위해 하단 정렬 */
+  left: 0;
+  right: 0;
+  background-color: #dde1e7;
   padding: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  height: 335px;
   overflow-y: auto;
-  border-radius: 10px;
-  z-index: 999;
+  z-index: 10;
+  transition: all 0.3s ease;
 }
 
 #history-panel.hidden {
   display: none;
 }
 
-#history-panel h3 {
-  margin-top: 0;
-  font-size: 16px;
+#history {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #history li {
+  padding: 6px 8px;
   cursor: pointer;
-  padding: 4px 0;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
 }
 
 #history li:hover {
-  background: #eaeaea;
+  background-color: #babecc;
 }
 
 #toggle-history-btn {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  padding: 10px;
-  background: #666;
-  color: white;
+  display: block;
+  margin: 10px auto;
+  padding: 8px 14px;
+  background-color: #dde1e7;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
+  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
 }
 
 #toggle-history-btn:hover {
-  background: #444;
+  background-color: #babecc;
+}
+
+#empty-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90%;
+  text-align: center;
+  color: gray;
+  margin: 10px 0;
+  font-style: italic;
 }

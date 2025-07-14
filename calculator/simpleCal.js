@@ -6,6 +6,7 @@ const actionBtns = document.querySelectorAll(".action-btn");
 const dotBtn = document.querySelectorAll(".dot-btn");
 const plusMinusBtn = document.querySelectorAll(".plus-minus-btn");
 const historyEl = document.getElementById("history");
+const emptyMessage = document.getElementById("empty-message");
 const historyPanel = document.getElementById("history-panel");
 const toggleBtn = document.getElementById("toggle-history-btn");
 
@@ -116,10 +117,21 @@ actionBtns.forEach((btn) => {
       }
     });
   }
-  if (btn.textContent === "AC" || btn.textContent === "CE") {
+  if (btn.textContent === "CE") {
     btn.addEventListener("click", () => {
       currentInput = "";
       resultBox.innerHTML = currentInput;
+    });
+  }
+  if (btn.textContent === "AC") {
+    btn.addEventListener("click", () => {
+      localStorage.removeItem("calc-history");
+      historyList = [];
+      currentInput = "";
+      resultBox.innerHTML = currentInput;
+      historyEl.innerHTML = "";
+
+      emptyMessage.style.display = "flex";
     });
   }
 });
@@ -141,6 +153,12 @@ const addToHistory = (expression, result) => {
 // 계산 기록 출력 함수
 const renderHistory = () => {
   historyEl.innerHTML = "";
+
+  if (historyList.length === 0) {
+    emptyMessage.style.display = "flex";
+  } else {
+    emptyMessage.style.display = "none";
+  }
 
   historyList.forEach((entry) => {
     const li = document.createElement("li");
