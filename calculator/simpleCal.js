@@ -6,6 +6,8 @@ const actionBtns = document.querySelectorAll(".action-btn");
 const dotBtn = document.querySelectorAll(".dot-btn");
 const plusMinusBtn = document.querySelectorAll(".plus-minus-btn");
 const historyEl = document.getElementById("history");
+const historyPanel = document.getElementById("history-panel");
+const toggleBtn = document.getElementById("toggle-history-btn");
 
 // 현재 입력 중인 수식 저장할 변수
 let currentInput = "";
@@ -135,6 +137,7 @@ const addToHistory = (expression, result) => {
   renderHistory();
 };
 
+// 계산 기록 출력 함수
 const renderHistory = () => {
   historyEl.innerHTML = "";
 
@@ -146,11 +149,17 @@ const renderHistory = () => {
       const [expression] = entry.split(" = ");
       currentInput = expression;
       resultBox.innerHTML = currentInput;
+      historyPanel.classList.add("hidden");
     });
 
     historyEl.appendChild(li);
   });
 };
+
+// 계산 기록 토글 버튼
+toggleBtn.addEventListener("click", () => {
+  historyPanel.classList.toggle("hidden");
+});
 
 // Shunting Yard 알고리즘을 이용한 계산 로직
 const evaluateExpression = (expression) => {
