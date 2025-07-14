@@ -4,10 +4,13 @@ const numBtns = document.querySelectorAll(".num-btn");
 const operatorBtns = document.querySelectorAll(".operator-btn");
 const actionBtns = document.querySelectorAll(".action-btn");
 const dotBtn = document.querySelectorAll(".dot-btn");
+const plusMinusBtn = document.querySelectorAll(".plus-minus-btn");
+const historyEl = document.getElementById("history");
 
 // 현재 입력 중인 수식 저장할 변수
 let currentInput = "";
 let isDotEntered = false;
+let historyList = [];
 
 // 숫자, 연산자 버튼 클릭 이벤트 등록
 numBtns.forEach((btn) => {
@@ -38,6 +41,9 @@ actionBtns.forEach((btn) => {
       try {
         const result = evaluateExpression(currentInput);
         resultBox.innerHTML = result;
+        // 계산 기록 저장
+        addToHistory(currentInput, result);
+
         currentInput = "";
       } catch (err) {
         resultBox.innerHTML = "Error";
@@ -67,6 +73,38 @@ dotBtn.forEach((btn) => {
   });
 });
 
+// 플러스 마이너스 부호 변환 기능
+plusMinusBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (currentInput === "") return;
+
+    // 정규식으로 마지막 숫자 찾기 (부호 포함)
+    const match = currentInput.match(/([+\-*/])?(-?\d*\.?\d*)$/);
+
+    if (match) {
+      const operator = match[1] || "";
+      let number = match[2];
+
+      // 부호 토글
+      if (number.startsWith("-")) {
+        number = number.slice(1);
+      } else {
+        number = "-" + number;
+      }
+
+      // 기존 입력에서 해당 부분 교체
+      const updated =
+        currentInput.slice(0, currentInput.length - match[0].length) +
+        operator +
+        number;
+
+      currentInput = updated;
+      resultBox.innerHTML = currentInput;
+    }
+  });
+});
+
+// 백스페이스 기능 및 클리어 기능
 actionBtns.forEach((btn) => {
   if (btn.textContent === "⌫") {
     btn.addEventListener("click", () => {
@@ -83,6 +121,36 @@ actionBtns.forEach((btn) => {
     });
   }
 });
+
+// 계산 기록 추가 함수
+const addToHistory = (expression, result) => {
+  const item = `${expression} = ${result}`;
+  historyList.unshift(item);
+
+  // 최신 10개까지만 저장
+  if (historyList.length > 10) {
+    historyList.pop();
+  }
+
+  renderHistory();
+};
+
+const renderHistory = () => {
+  historyEl.innerHTML = "";
+
+  historyList.forEach((entry) => {
+    const li = document.createElement("li");
+    li.textContent = entry;
+
+    li.addEventListener("click", () => {
+      const [expression] = entry.split(" = ");
+      currentInput = expression;
+      resultBox.innerHTML = currentInput;
+    });
+
+    historyEl.appendChild(li);
+  });
+};
 
 // Shunting Yard 알고리즘을 이용한 계산 로직
 const evaluateExpression = (expression) => {
