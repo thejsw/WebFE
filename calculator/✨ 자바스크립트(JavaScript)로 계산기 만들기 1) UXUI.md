@@ -3,6 +3,8 @@ JavaScript로 **실제 계산 가능하도록** 프로젝트를 확장해 보았
 
 https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%EC%83%89%EC%83%81%EC%9D%B4-%EB%B0%94%EB%80%8C%EB%8A%94-%EA%B3%84%EC%82%B0%EA%B8%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-HTMLCSS-3
 
+<img width="413" height="486" alt="Image" src="https://github.com/user-attachments/assets/1a3c27d0-9da2-4b1b-92e7-7dbcfc48a17a" />
+
 이전 프로젝트는 이 글을 확인해주세요 :)
 
 이 글에서는 계산기의 **UI/UX 구조와 스타일링(CSS)**에 대해 설명하고, 
