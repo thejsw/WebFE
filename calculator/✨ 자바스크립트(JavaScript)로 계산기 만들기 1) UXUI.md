@@ -3,7 +3,7 @@ JavaScript로 **실제 계산 가능하도록** 프로젝트를 확장해 보았
 
 https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%EC%83%89%EC%83%81%EC%9D%B4-%EB%B0%94%EB%80%8C%EB%8A%94-%EA%B3%84%EC%82%B0%EA%B8%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-HTMLCSS-3
 
-<img width="413" height="486" alt="Image" src="https://github.com/user-attachments/assets/1a3c27d0-9da2-4b1b-92e7-7dbcfc48a17a" />
+<img width="362" height="621" alt="Image" src="https://github.com/user-attachments/assets/04c11586-66c5-49b4-8b0c-d9e8605ebab2" />
 
 이전 프로젝트는 이 글을 확인해주세요 :)
 
@@ -68,8 +68,7 @@ https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%E
 
 ### 📐 전체 컨테이너 구조
 
-
-
+<img width="362" height="621" alt="Image" src="https://github.com/user-attachments/assets/04c11586-66c5-49b4-8b0c-d9e8605ebab2" />
 
 계산기의 전체 틀은 .container를 기준으로 **flex-column** 구조로 배치됩니다.
 디자인에는 부드럽고 가벼운 외관과 함께 요소가 배경 위에 떠 있는 것처럼 보이는 **뉴포미즘** 스타일을 적용해 부드러운 그림자와 입체감을 주었습니다.
@@ -87,6 +86,9 @@ https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%E
 ```
 
 ### 🧮 결과 출력 영역
+
+<img width="368" height="632" alt="image" src="https://github.com/user-attachments/assets/9877c436-da19-4b7e-999b-5d46ffc96874" />
+
 사용자의 입력과 결과가 출력되는 부분입니다.
 
 ```css
@@ -122,6 +124,9 @@ https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%E
 ```
 
 ### 🌗 다크 모드 대응
+
+<img width="368" height="627" alt="image" src="https://github.com/user-attachments/assets/17b4aaf2-88f3-4ebe-b1d8-13cb25b6f54b" />
+
 시스템 다크 모드에 따라 배경/글자색을 자동으로 전환합니다.
 
 ```css
@@ -143,6 +148,9 @@ https://velog.io/@jswtncapetnc/%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C%EC%97%90-%E
 ```
 
 ### 🧾 계산 기록 패널 (히스토리)
+
+<img width="365" height="629" alt="image" src="https://github.com/user-attachments/assets/29c5ad7f-e526-4cfa-a5e6-32e5a404f1b6" />
+
 버튼을 누르면 위에 있는 패널이 내려오며 계산 기록을 보여주는 구조입니다.
 position: absolute와 z-index를 활용해 버튼 위에 덮도록 구성했습니다.
 
